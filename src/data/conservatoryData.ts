@@ -1,4 +1,5 @@
 import { TenorTitan, CollegeAuditionProfile, JazzArticleLesson, EllingtonTune, HarmonicLick, FacultyMember } from '../types/masterclass';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 // TOP 10 TENOR GREATS & ADJUDICATION VOICES
 export const TENOR_TITANS: TenorTitan[] = [
@@ -336,7 +337,7 @@ export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
     programType: "Conservatory",
     officialWebsite: "https://www.juilliard.edu/music/jazz",
     auditionPortalUrl: "https://www.juilliard.edu/admissions/music/jazz-studies-admissions",
-    imageBanner: "/src/assets/images/lincoln_center_hall_1792966722476.jpg",
+    imageBanner: JAZZ_IMAGES.lincolnCenterHall,
     degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "Artist Diploma"],
     facultyHighlights: ["Wynton Marsalis (Director)", "Ted Nash (Saxophone)", "Ron Blake (Tenor Saxophone)"],
     acceptanceRate: "~3%",
@@ -370,7 +371,7 @@ export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
     programType: "Conservatory",
     officialWebsite: "https://www.msmnyc.edu/programs/jazz-arts/",
     auditionPortalUrl: "https://www.msmnyc.edu/admissions/audition-information/",
-    imageBanner: "/src/assets/images/audition_hall_1792948139496.jpg",
+    imageBanner: JAZZ_IMAGES.auditionHall,
     degreesOffered: ["B.M. Jazz Arts", "M.M. Jazz Arts", "Doctor of Musical Arts (D.M.A.)"],
     facultyHighlights: ["Donny McCaslin", "Steve Slagle", "Jaleel Shaw"],
     acceptanceRate: "~8%",
@@ -403,7 +404,7 @@ export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
     programType: "University School of Music",
     officialWebsite: "https://music.usc.edu/departments/jazz/",
     auditionPortalUrl: "https://music.usc.edu/admission/auditions/",
-    imageBanner: "/src/assets/images/recording_studio_booth_1792966722231.jpg",
+    imageBanner: JAZZ_IMAGES.recordingStudioBooth,
     degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "D.M.A. Jazz Studies"],
     facultyHighlights: ["Bob Mintzer (Department Chair)", "Jason Goldman", "Vince Mendoza"],
     acceptanceRate: "~10%",
@@ -435,7 +436,7 @@ export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
     programType: "University School of Music",
     officialWebsite: "https://jazz.unt.edu/",
     auditionPortalUrl: "https://jazz.unt.edu/auditions",
-    imageBanner: "/src/assets/images/studio_mixing_console_1792966723834.jpg",
+    imageBanner: JAZZ_IMAGES.studioMixingConsole,
     degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "D.M.A. Jazz Studies"],
     facultyHighlights: ["Alan Baylock (One O'Clock Lab Band)", "Brad Leali", "Philip Dizack"],
     acceptanceRate: "~12%",
@@ -467,7 +468,7 @@ export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
     programType: "Contemporary College",
     officialWebsite: "https://www.berklee.edu/",
     auditionPortalUrl: "https://www.berklee.edu/admissions/undergraduate/audition-and-interview",
-    imageBanner: "/src/assets/images/college_quad_campus_1792966906398.jpg",
+    imageBanner: JAZZ_IMAGES.collegeQuad,
     degreesOffered: ["B.M. Performance", "B.M. Jazz Composition", "Diploma in Music"],
     facultyHighlights: ["George Garzone (Triadic Chromatic Concept)", "Walter Smith III", "Shannon LeClaire"],
     acceptanceRate: "~35% (Top Scholarship <5%)",
@@ -499,7 +500,7 @@ export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
     programType: "University School of Music",
     officialWebsite: "https://music.indiana.edu/degrees-programs/jazz-studies/",
     auditionPortalUrl: "https://music.indiana.edu/admissions/auditions/jazz.html",
-    imageBanner: "/src/assets/images/faculty_jazz_hall_1792946309269.jpg",
+    imageBanner: JAZZ_IMAGES.facultyJazzHall,
     degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "Performer Diploma"],
     facultyHighlights: ["Tom Walsh (Department Chair, Saxophone)", "Greg Ward", "Brent Wallarab"],
     acceptanceRate: "~15%",

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ELLINGTON_REPERTOIRE, COLLEGE_PRESCREENINGS } from '../data/conservatoryData';
 import { EllingtonTune } from '../types/masterclass';
 import { BookOpen, ExternalLink, GraduationCap, Sparkles, Music2, Clock } from 'lucide-react';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 export const EllingtonAuditionModule: React.FC = () => {
   const [selectedTune, setSelectedTune] = useState<EllingtonTune>(ELLINGTON_REPERTOIRE[0]);
@@ -138,7 +139,7 @@ export const EllingtonAuditionModule: React.FC = () => {
           <div className="rounded-xl overflow-hidden border border-[#272c40] bg-[#12141f]">
             <div className="relative aspect-[16/10] bg-black">
               <img
-                src="/src/assets/images/ellington_manuscript_1792946308747.jpg"
+                src={JAZZ_IMAGES.ellingtonManuscript}
                 alt="Vintage big band music manuscript on wooden orchestra stand"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"

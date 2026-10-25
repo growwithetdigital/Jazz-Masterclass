@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { TENOR_TITANS } from '../data/conservatoryData';
 import { TenorTitan } from '../types/masterclass';
 import { ExternalLink, Sparkles, Send, Music, Award, Radio } from 'lucide-react';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 export const TenorTitansModule: React.FC = () => {
   const [selectedTitan, setSelectedTitan] = useState<TenorTitan>(TENOR_TITANS[0]);
@@ -137,7 +138,7 @@ export const TenorTitansModule: React.FC = () => {
       {/* Stage Backdrop Visual */}
       <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#272c40] bg-slate-900 text-white aspect-[21/9] sm:aspect-[24/8] max-h-64">
         <img
-          src="/src/assets/images/tenor_titans_stage_1792948138626.jpg"
+          src={JAZZ_IMAGES.tenorTitansStage}
           alt="Archival Blue Note New York Jazz Club Stage"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover opacity-60 filter contrast-110"
@@ -167,11 +168,11 @@ export const TenorTitansModule: React.FC = () => {
           const isSelected = selectedTitan.id === titan.id;
           const titanImage = titan.category === 'Tenor Legend'
             ? (['hawkins', 'young', 'webster', 'gordon', 'henderson'].includes(titan.id)
-                ? '/src/assets/images/tenor_legend_portrait_1792966893128.jpg'
-                : '/src/assets/images/tenor_sax_soloist_1792966723726.jpg')
+                ? JAZZ_IMAGES.tenorLegendPortrait
+                : JAZZ_IMAGES.tenorSaxSoloist)
             : (titan.id === 'adjudicator'
-                ? '/src/assets/images/audition_hall_1792948139496.jpg'
-                : '/src/assets/images/studio_mixing_console_1792966723834.jpg');
+                ? JAZZ_IMAGES.auditionHall
+                : JAZZ_IMAGES.studioMixingConsole);
 
           return (
             <motion.div
@@ -241,11 +242,11 @@ export const TenorTitansModule: React.FC = () => {
                   src={
                     selectedTitan.category === 'Tenor Legend'
                       ? (['hawkins', 'young', 'webster', 'gordon', 'henderson'].includes(selectedTitan.id)
-                          ? '/src/assets/images/tenor_legend_portrait_1792966893128.jpg'
-                          : '/src/assets/images/tenor_sax_soloist_1792966723726.jpg')
+                          ? JAZZ_IMAGES.tenorLegendPortrait
+                          : JAZZ_IMAGES.tenorSaxSoloist)
                       : (selectedTitan.id === 'adjudicator'
-                          ? '/src/assets/images/audition_hall_1792948139496.jpg'
-                          : '/src/assets/images/studio_mixing_console_1792966723834.jpg')
+                          ? JAZZ_IMAGES.auditionHall
+                          : JAZZ_IMAGES.studioMixingConsole)
                   }
                   alt={selectedTitan.name}
                   className="w-full h-full object-cover"

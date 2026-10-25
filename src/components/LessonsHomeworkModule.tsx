@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { JAZZ_LESSONS } from '../data/conservatoryData';
 import { JazzArticleLesson } from '../types/masterclass';
 import { BookOpen, CheckSquare, Square, Clock, ExternalLink, Bookmark, CheckCircle2 } from 'lucide-react';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 export const LessonsHomeworkModule: React.FC = () => {
   const [selectedLesson, setSelectedLesson] = useState<JazzArticleLesson>(JAZZ_LESSONS[0]);
@@ -33,7 +34,7 @@ export const LessonsHomeworkModule: React.FC = () => {
       {/* Visual Banner */}
       <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#272c40] bg-slate-900 text-white aspect-[21/9] sm:aspect-[24/8] max-h-64">
         <img
-          src="/src/assets/images/lessons_study_desk_1792948141571.jpg"
+          src={JAZZ_IMAGES.lessonsStudyDesk}
           alt="Vintage Jazz Conservatory Study Desk with Sheet Music and Mouthpiece"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover opacity-65"

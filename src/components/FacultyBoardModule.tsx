@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FACULTY_BOARD } from '../data/conservatoryData';
 import { FacultyMember, FacultyId } from '../types/masterclass';
 import { Send, Sparkles, User, RefreshCw, MessageSquare } from 'lucide-react';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 export const FacultyBoardModule: React.FC = () => {
   const [selectedFaculty, setSelectedFaculty] = useState<FacultyMember>(FACULTY_BOARD[0]);
@@ -139,7 +140,7 @@ export const FacultyBoardModule: React.FC = () => {
           <div className="rounded-xl overflow-hidden border border-[#252a3d] bg-[#12141f]">
             <div className="relative aspect-[4/3] bg-black">
               <img
-                src="/src/assets/images/faculty_jazz_hall_1792946309269.jpg"
+                src={JAZZ_IMAGES.facultyJazzHall}
                 alt="Archival gallery of jazz saxophone icons in conservatory hall"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover filter contrast-105"

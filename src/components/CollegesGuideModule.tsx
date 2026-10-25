@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { COLLEGES_DATABASE } from '../data/conservatoryData';
 import { CollegeAuditionProfile } from '../types/masterclass';
 import { GraduationCap, ExternalLink, MessageCircle, AlertCircle, CheckCircle2, Search, Building2, MapPin } from 'lucide-react';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 export const CollegesGuideModule: React.FC = () => {
   const [selectedSchool, setSelectedSchool] = useState<CollegeAuditionProfile>(COLLEGES_DATABASE[0]);
@@ -72,7 +73,7 @@ export const CollegesGuideModule: React.FC = () => {
       {/* Hero Banner for Audition Room */}
       <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#272c40] bg-slate-900 text-white aspect-[21/9] sm:aspect-[24/8] max-h-72">
         <img
-          src="/src/assets/images/audition_hall_1792948139496.jpg"
+          src={JAZZ_IMAGES.auditionHall}
           alt="Conservatory Audition Hall with Steinway Grand Piano"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover opacity-60"

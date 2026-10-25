@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, Compass, Play, BookOpen, GraduationCap, Users } from 'lucide-react';
+import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 interface HeroBannerProps {
   onSelectTab: (tab: string) => void;
@@ -89,7 +90,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectTab }) => {
           <div className="lg:col-span-5 relative">
             <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-[#2a2f44] shadow-xl bg-slate-900 aspect-video sm:aspect-[4/3] lg:aspect-[16/11]">
               <img
-                src="/src/assets/images/hero_tenor_masterclass_1792946308614.jpg"
+                src={JAZZ_IMAGES.heroTenor}
                 alt="Vintage gold lacquer tenor saxophone resting in dark velvet case"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
