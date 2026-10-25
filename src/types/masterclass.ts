@@ -20,6 +20,7 @@ export interface TenorTitan {
   category: 'Tenor Legend' | 'Adjudication & College Scout' | 'Career & Studio Director';
   soundPhilosophy: string;
   whyMasonMustStudy: string;
+  imageAsset?: string;
   famousWorks: Array<{
     title: string;
     albumOrSession: string;
@@ -40,6 +41,7 @@ export interface CollegeAuditionProfile {
   programType: 'Conservatory' | 'University School of Music' | 'Contemporary College';
   officialWebsite: string;
   auditionPortalUrl: string;
+  imageBanner?: string;
   degreesOffered: string[];
   facultyHighlights: string[];
   acceptanceRate: string;
@@ -86,6 +88,8 @@ export interface SavedRecordingTake {
   key: string;
   tempo: string;
   durationSeconds: number;
+  mediaType?: 'audio' | 'video';
+  mediaBlobUrl?: string;
   audioBlobUrl?: string;
   audioBase64?: string;
   mimeType: string;

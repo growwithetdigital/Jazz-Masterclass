@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { TENOR_TITANS } from '../data/conservatoryData';
 import { TenorTitan } from '../types/masterclass';
 import { ExternalLink, Sparkles, Send, Music, Award, Radio } from 'lucide-react';
@@ -164,9 +165,18 @@ export const TenorTitansModule: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredTitans.map((titan, idx) => {
           const isSelected = selectedTitan.id === titan.id;
+          const titanImage = titan.category === 'Tenor Legend'
+            ? (['hawkins', 'young', 'webster', 'gordon', 'henderson'].includes(titan.id)
+                ? '/src/assets/images/tenor_legend_portrait_1792966893128.jpg'
+                : '/src/assets/images/tenor_sax_soloist_1792966723726.jpg')
+            : (titan.id === 'adjudicator'
+                ? '/src/assets/images/audition_hall_1792948139496.jpg'
+                : '/src/assets/images/studio_mixing_console_1792966723834.jpg');
+
           return (
-            <div
+            <motion.div
               key={titan.id}
+              whileHover={{ y: -2 }}
               onClick={() => handleSelectTitan(titan)}
               className={`p-4 rounded-xl text-left transition-all border cursor-pointer flex flex-col justify-between space-y-3 ${
                 isSelected
@@ -175,19 +185,32 @@ export const TenorTitansModule: React.FC = () => {
               }`}
             >
               <div>
-                <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+                <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2">
                   <span className="font-mono text-[11px] text-amber-600 dark:text-amber-400 font-semibold">
                     {idx < 10 ? `0${idx + 1}. Tenor Great` : 'Panel Voice'}
                   </span>
                   <span className="font-mono text-[11px]">{titan.era.split('-')[0].trim()}</span>
                 </div>
-                <h3 className="font-bold text-base text-slate-900 dark:text-white font-display">
-                  {titan.name}
-                </h3>
-                <p className="text-xs text-amber-700 dark:text-amber-300 font-medium mt-0.5 line-clamp-1">
-                  {titan.moniker}
-                </p>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-slate-900 border border-slate-300 dark:border-[#2d3248]">
+                    <img
+                      src={titanImage}
+                      alt={titan.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base text-slate-900 dark:text-white font-display">
+                      {titan.name}
+                    </h3>
+                    <p className="text-xs text-amber-700 dark:text-amber-300 font-medium line-clamp-1">
+                      {titan.moniker}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-2.5 line-clamp-2 leading-relaxed">
                   {titan.soundPhilosophy}
                 </p>
               </div>
@@ -200,7 +223,7 @@ export const TenorTitansModule: React.FC = () => {
                   {isSelected ? 'Active In Console' : 'Consult Master'}
                 </span>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -212,16 +235,33 @@ export const TenorTitansModule: React.FC = () => {
         <div className="lg:col-span-6 space-y-6">
           <div className="p-6 rounded-2xl border border-slate-200 dark:border-[#252a3d] bg-white dark:bg-[#12141f] space-y-5 shadow-xs">
             
-            <div className="border-b border-slate-100 dark:border-[#1f2334] pb-4">
-              <span className="text-xs uppercase font-mono tracking-wider text-amber-600 dark:text-amber-400">
-                {selectedTitan.category} · {selectedTitan.era}
-              </span>
-              <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white mt-1">
-                {selectedTitan.name}
-              </h3>
-              <p className="text-xs text-amber-700 dark:text-amber-300 font-semibold mt-0.5">
-                {selectedTitan.moniker}
-              </p>
+            <div className="flex items-center gap-4 border-b border-slate-100 dark:border-[#1f2334] pb-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 border-2 border-amber-500/40 bg-slate-900 shadow-md">
+                <img
+                  src={
+                    selectedTitan.category === 'Tenor Legend'
+                      ? (['hawkins', 'young', 'webster', 'gordon', 'henderson'].includes(selectedTitan.id)
+                          ? '/src/assets/images/tenor_legend_portrait_1792966893128.jpg'
+                          : '/src/assets/images/tenor_sax_soloist_1792966723726.jpg')
+                      : (selectedTitan.id === 'adjudicator'
+                          ? '/src/assets/images/audition_hall_1792948139496.jpg'
+                          : '/src/assets/images/studio_mixing_console_1792966723834.jpg')
+                  }
+                  alt={selectedTitan.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <span className="text-xs uppercase font-mono tracking-wider text-amber-600 dark:text-amber-400">
+                  {selectedTitan.category} · {selectedTitan.era}
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-slate-900 dark:text-white mt-0.5">
+                  {selectedTitan.name}
+                </h3>
+                <p className="text-xs text-amber-700 dark:text-amber-300 font-semibold mt-0.5">
+                  {selectedTitan.moniker}
+                </p>
+              </div>
             </div>
 
             {/* Famous Quote */}

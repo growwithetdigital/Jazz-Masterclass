@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { COLLEGES_DATABASE } from '../data/conservatoryData';
 import { CollegeAuditionProfile } from '../types/masterclass';
 import { GraduationCap, ExternalLink, MessageCircle, AlertCircle, CheckCircle2, Search, Building2, MapPin } from 'lucide-react';
@@ -150,47 +151,77 @@ export const CollegesGuideModule: React.FC = () => {
 
         {/* Right 8 Columns: Selected School Deep-Dive Dossier */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="p-6 rounded-2xl border border-slate-200 dark:border-[#252a3d] bg-white dark:bg-[#12141f] space-y-6 shadow-xs">
-            
-            {/* School Header */}
-            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-100 dark:border-[#1f2334] pb-5">
-              <div>
-                <span className="text-xs uppercase font-mono tracking-wider text-amber-600 dark:text-amber-400">
-                  {selectedSchool.programType} · {selectedSchool.location}
-                </span>
-                <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white mt-1">
-                  {selectedSchool.schoolName}
-                </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 font-medium">
-                  {selectedSchool.divisionOrCollege}
-                </p>
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={selectedSchool.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="p-6 rounded-2xl border border-slate-200 dark:border-[#252a3d] bg-white dark:bg-[#12141f] space-y-6 shadow-xs overflow-hidden"
+            >
+              
+              {/* Individual School Campus / Hall Image Banner */}
+              {selectedSchool.imageBanner && (
+                <div className="relative rounded-xl overflow-hidden aspect-[21/7] max-h-48 border border-slate-200 dark:border-[#222533] bg-slate-950">
+                  <img
+                    src={selectedSchool.imageBanner}
+                    alt={`${selectedSchool.schoolName} Campus & Facilities`}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = 'none';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white">
+                    <span className="font-mono text-amber-400 font-bold uppercase tracking-wider text-[11px]">
+                      {selectedSchool.schoolName} Audition Grounds
+                    </span>
+                    <span className="text-[10px] bg-black/60 px-2 py-0.5 rounded backdrop-blur border border-white/10 font-mono">
+                      {selectedSchool.location}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* School Header */}
+              <div className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-100 dark:border-[#1f2334] pb-5">
+                <div>
+                  <span className="text-xs uppercase font-mono tracking-wider text-amber-600 dark:text-amber-400">
+                    {selectedSchool.programType} · {selectedSchool.location}
+                  </span>
+                  <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white mt-1">
+                    {selectedSchool.schoolName}
+                  </h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 font-medium">
+                    {selectedSchool.divisionOrCollege}
+                  </p>
+                </div>
+
+                {/* Direct Links */}
+                <div className="flex items-center gap-2.5">
+                  <a
+                    href={selectedSchool.officialWebsite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-[#2a2f44] text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-colors"
+                  >
+                    <span>Program Site</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <a
+                    href={selectedSchool.auditionPortalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-all shadow-xs"
+                  >
+                    <span>Audition Portal</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
 
-              {/* Direct Links */}
-              <div className="flex items-center gap-2.5">
-                <a
-                  href={selectedSchool.officialWebsite}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-[#2a2f44] text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-colors"
-                >
-                  <span>Program Site</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={selectedSchool.auditionPortalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-all shadow-xs"
-                >
-                  <span>Audition Portal</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Quick Metrics Strip */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+              {/* Quick Metrics Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#161826] border border-slate-200 dark:border-[#24283c]">
                 <span className="text-slate-500 dark:text-slate-400 block text-[11px] uppercase tracking-wider mb-0.5">Faculty Notables</span>
                 <span className="text-slate-900 dark:text-white font-medium block">
@@ -305,7 +336,8 @@ export const CollegesGuideModule: React.FC = () => {
               </div>
             </div>
 
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
