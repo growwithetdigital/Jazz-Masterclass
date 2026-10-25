@@ -1,0 +1,6 @@
+{
+  "name": "Mason High Masterclass",
+  "description": "Elite AI-driven jazz studio and conservatory engine engineered for Mason's Essentially Ellington preparation, Parker & Coltrane harmonic mastery, and collegiate audition recruitment.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

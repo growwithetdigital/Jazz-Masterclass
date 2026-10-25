@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "AudioTake": {
+      "title": "AudioTake",
+      "description": "Recorded saxophone and clarinet audition takes with adjudication scores",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the take"
+        },
+        "studentUid": {
+          "type": "string",
+          "description": "User ID of the student musician"
+        },
+        "tuneTitle": {
+          "type": "string",
+          "description": "Title of the jazz tune or excerpt",
+          "maxLength": 200
+        },
+        "key": {
+          "type": "string",
+          "description": "Musical key (Concert / Tenor)",
+          "maxLength": 100
+        },
+        "tempo": {
+          "type": "string",
+          "description": "Tempo marking or BPM string",
+          "maxLength": 100
+        },
+        "durationSeconds": {
+          "type": "number",
+          "description": "Duration of the recording in seconds"
+        },
+        "studentNotes": {
+          "type": "string",
+          "description": "Student notes on the take and focus areas",
+          "maxLength": 2000
+        },
+        "overallScore": {
+          "type": "number",
+          "description": "Adjudication score out of 100"
+        },
+        "divisionRating": {
+          "type": "string",
+          "description": "Division rating award",
+          "maxLength": 200
+        },
+        "critiqueSummary": {
+          "type": "string",
+          "description": "Summary critique from the faculty board",
+          "maxLength": 4000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp string or server timestamp"
+        }
+      },
+      "required": ["id", "studentUid", "tuneTitle", "key", "tempo"]
+    },
+    "PracticeLog": {
+      "title": "PracticeLog",
+      "description": "Daily conservatory practice session log for Mason",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Log ID"
+        },
+        "studentUid": {
+          "type": "string",
+          "description": "User ID"
+        },
+        "durationMinutes": {
+          "type": "number",
+          "description": "Practice duration in minutes"
+        },
+        "motto": {
+          "type": "string",
+          "description": "Daily practice motto",
+          "maxLength": 500
+        },
+        "completedCount": {
+          "type": "number",
+          "description": "Number of exercises completed"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp"
+        }
+      },
+      "required": ["id", "studentUid", "durationMinutes"]
+    }
+  },
+  "firestore": {
+    "/audioTakes/{takeId}": {
+      "schema": "AudioTake",
+      "description": "Collection of recorded student audition takes and adjudication scorecards"
+    },
+    "/practiceLogs/{logId}": {
+      "schema": "PracticeLog",
+      "description": "Collection of conservatory daily practice logs"
+    }
+  }
+}
