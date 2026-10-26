@@ -80,12 +80,43 @@ export interface AgouraAlum {
   directAdviceForMason: string;
 }
 
+export type CorePillarId = 
+  | 'tone_overtones'
+  | 'parker_bebop'
+  | 'coltrane_changes'
+  | 'ellington_repertoire'
+  | 'clarinet_doubling'
+  | 'transcription_sightreading';
+
+export interface CorePillarConfig {
+  id: CorePillarId;
+  name: string;
+  shortLabel: string;
+  legend: string;
+  colorHex: string;
+  badgeBg: string;
+  badgeText: string;
+  borderHex: string;
+  targetWeeklyHours: number;
+  description: string;
+}
+
+export interface DailyPillarLog {
+  id: string; // e.g. "pillar_2026-10-26"
+  date: string; // YYYY-MM-DD
+  studentUid: string;
+  pillarHours: Record<CorePillarId, number>; // Hours spent per pillar on this date
+  totalHours: number;
+  notes?: string;
+  updatedAt: string;
+}
+
 export interface PracticeSessionRecord {
   id: string;
   studentUid: string;
   date: string; // YYYY-MM-DD
   minutes: number;
-  focusCategory: 'Tone & Overtones' | 'Parker Bebop & Enclosures' | 'Coltrane Changes' | 'Ellington Repertoire' | 'Clarinet Doubling' | 'Full Routine';
+  focusCategory: 'Tone & Overtones' | 'Parker Bebop & Enclosures' | 'Coltrane Changes' | 'Ellington Repertoire' | 'Clarinet Doubling' | 'Full Routine' | 'Transcription & Sight-Reading';
   instrument: 'Tenor Saxophone' | 'Bb Clarinet' | 'Both';
   notes?: string;
   createdAt: string;

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { HARMONIC_LICKS, OVERTONE_CHART } from '../data/conservatoryData';
 import { HarmonicLick } from '../types/masterclass';
-import { Sparkles, ArrowRight, Layers, Volume2, Search, Sliders } from 'lucide-react';
+import { Sparkles, ArrowRight, Layers, Volume2, Search, Sliders, Mic } from 'lucide-react';
 
-export const TranscendenceLabModule: React.FC = () => {
+interface TranscendenceLabModuleProps {
+  onSelectTab?: (tab: string) => void;
+}
+
+export const TranscendenceLabModule: React.FC<TranscendenceLabModuleProps> = ({ onSelectTab }) => {
   const [selectedLick, setSelectedLick] = useState<HarmonicLick>(HARMONIC_LICKS[0]);
   const [selectedPitchView, setSelectedPitchView] = useState<'tenor' | 'concert' | 'alto'>('tenor');
   const [selectedOvertoneFundamental, setSelectedOvertoneFundamental] = useState<number>(0);

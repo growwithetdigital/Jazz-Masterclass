@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { JAZZ_LESSONS } from '../data/conservatoryData';
 import { JazzArticleLesson } from '../types/masterclass';
 import { audioEngine, NOTE_FREQUENCIES } from '../utils/audioEngine';
-import { BookOpen, CheckSquare, Square, Clock, ExternalLink, Bookmark, CheckCircle2, Volume2, Play } from 'lucide-react';
+import { BookOpen, CheckSquare, Square, Clock, ExternalLink, Bookmark, CheckCircle2, Volume2, Play, Mic, Layers } from 'lucide-react';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
 
-export const LessonsHomeworkModule: React.FC = () => {
+interface LessonsHomeworkModuleProps {
+  onSelectTab?: (tab: string) => void;
+}
+
+export const LessonsHomeworkModule: React.FC<LessonsHomeworkModuleProps> = ({ onSelectTab }) => {
   const [selectedLesson, setSelectedLesson] = useState<JazzArticleLesson>(JAZZ_LESSONS[0]);
   const [completedSteps, setCompletedSteps] = useState<Record<string, boolean>>({});
   const [playingPitch, setPlayingPitch] = useState<string | null>(null);

@@ -5,15 +5,20 @@ import { CollegeAuditionProfile } from '../types/masterclass';
 import { 
   GraduationCap, ExternalLink, MessageCircle, CheckCircle2, 
   Search, MapPin, DollarSign, Briefcase, Award, Sparkles, 
-  UserCheck, Compass
+  UserCheck, Compass, Mic, Layers
 } from 'lucide-react';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
 
-export const CollegesGuideModule: React.FC = () => {
+interface CollegesGuideModuleProps {
+  onSelectTab?: (tab: string) => void;
+  initialSubTab?: 'colleges' | 'alumni';
+}
+
+export const CollegesGuideModule: React.FC<CollegesGuideModuleProps> = ({ onSelectTab, initialSubTab = 'colleges' }) => {
   const [selectedSchool, setSelectedSchool] = useState<CollegeAuditionProfile>(TOP_25_COLLEGES_DATABASE[0]);
   const [filterType, setFilterType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState<'colleges' | 'alumni'>('colleges');
+  const [activeTab, setActiveTab] = useState<'colleges' | 'alumni'>(initialSubTab);
 
   const filteredSchools = TOP_25_COLLEGES_DATABASE.filter(school => {
     const matchesType = filterType === 'all' || school.programType.toLowerCase().includes(filterType.toLowerCase());

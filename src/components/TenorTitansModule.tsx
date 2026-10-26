@@ -3,10 +3,14 @@ import { motion, AnimatePresence } from 'motion/react';
 import { TENOR_TITANS } from '../data/conservatoryData';
 import { TenorTitan, SoundDemoNote } from '../types/masterclass';
 import { audioEngine } from '../utils/audioEngine';
-import { ExternalLink, Sparkles, Send, Music, Award, Radio, Play, Pause, Volume2, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, Sparkles, Send, Music, Award, Radio, Play, Pause, Volume2, CheckCircle2, Mic, Compass } from 'lucide-react';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
 
-export const TenorTitansModule: React.FC = () => {
+interface TenorTitansModuleProps {
+  onSelectTab?: (tab: string) => void;
+}
+
+export const TenorTitansModule: React.FC<TenorTitansModuleProps> = ({ onSelectTab }) => {
   const [selectedTitan, setSelectedTitan] = useState<TenorTitan>(TENOR_TITANS[0]);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [consultQuery, setConsultQuery] = useState('');

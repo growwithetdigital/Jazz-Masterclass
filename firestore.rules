@@ -47,5 +47,13 @@ service cloud.firestore {
       allow delete: if isValidId(goalId) && 
                     (!isSignedIn() || resource.data.studentUid == request.auth.uid);
     }
+
+    match /dailyPillarLogs/{logId} {
+      allow read: if true;
+      allow create, update: if isValidId(logId) && 
+                            request.resource.data.studentUid is string;
+      allow delete: if isValidId(logId) && 
+                    (!isSignedIn() || resource.data.studentUid == request.auth.uid);
+    }
   }
 }

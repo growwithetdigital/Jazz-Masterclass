@@ -6,10 +6,14 @@ import { doc, setDoc, getDocs, collection, deleteDoc } from 'firebase/firestore'
 import { 
   Mic, Square, Upload, Award, Play, Trash2, Sparkles, Music, 
   Database, Cloud, LogIn, LogOut, CheckCircle2, Video, Volume2, 
-  Gauge, AlertCircle, ShieldCheck, PlayCircle
+  Gauge, AlertCircle, ShieldCheck, PlayCircle, Layers
 } from 'lucide-react';
 
-export const AudioVaultModule: React.FC = () => {
+interface AudioVaultModuleProps {
+  onSelectTab?: (tab: string) => void;
+}
+
+export const AudioVaultModule: React.FC<AudioVaultModuleProps> = ({ onSelectTab }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingDuration, setRecordingDuration] = useState(0);

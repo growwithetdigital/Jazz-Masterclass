@@ -3,16 +3,21 @@ import { motion, AnimatePresence } from 'motion/react';
 import { audioEngine } from '../utils/audioEngine';
 import { CLARINET_DOUBLING_GUIDE } from '../data/conservatoryData';
 import { PracticeItinerary, PracticeSessionRecord, PracticeGoalRecord } from '../types/masterclass';
+import { WeeklyPracticeCalendar } from './WeeklyPracticeCalendar';
 import { db, auth, onAuthStateChanged, User, signInWithPopup, signOut, googleProvider } from '../lib/firebase';
 import { collection, doc, setDoc, getDocs, deleteDoc } from 'firebase/firestore';
 import { 
   Play, Pause, Volume2, VolumeX, CheckSquare, Square, 
   Clock, Sparkles, Feather, AlertTriangle, Target, Calendar, 
   Flame, TrendingUp, BarChart2, Plus, Trash2, Cloud, ShieldCheck, 
-  CheckCircle2, LogIn, LogOut
+  CheckCircle2, LogIn, LogOut, Mic
 } from 'lucide-react';
 
-export const PracticeRoutineModule: React.FC = () => {
+interface PracticeRoutineModuleProps {
+  onSelectTab?: (tab: string) => void;
+}
+
+export const PracticeRoutineModule: React.FC<PracticeRoutineModuleProps> = ({ onSelectTab }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [selectedDuration, setSelectedDuration] = useState<30 | 60 | 90>(60);
   const [includeClarinet, setIncludeClarinet] = useState(true);
@@ -405,6 +410,9 @@ export const PracticeRoutineModule: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* WEEKLY PRACTICE CALENDAR (6 CORE PILLARS & BAR CHART PROGRESSION) */}
+      <WeeklyPracticeCalendar />
 
       {/* =========================================================================
           FEATURE: PRACTICE LOGGER, WEEKLY GOALS & FIRESTORE CONSISTENCY VISUALIZER

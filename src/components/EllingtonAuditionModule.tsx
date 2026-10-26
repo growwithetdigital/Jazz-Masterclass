@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { ELLINGTON_REPERTOIRE, COLLEGE_PRESCREENINGS } from '../data/conservatoryData';
 import { EllingtonTune } from '../types/masterclass';
-import { BookOpen, ExternalLink, GraduationCap, Sparkles, Music2, Clock } from 'lucide-react';
+import { BookOpen, ExternalLink, GraduationCap, Sparkles, Music2, Clock, Mic, Layers } from 'lucide-react';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
 
-export const EllingtonAuditionModule: React.FC = () => {
+interface EllingtonAuditionModuleProps {
+  onSelectTab?: (tab: string) => void;
+}
+
+export const EllingtonAuditionModule: React.FC<EllingtonAuditionModuleProps> = ({ onSelectTab }) => {
   const [selectedTune, setSelectedTune] = useState<EllingtonTune>(ELLINGTON_REPERTOIRE[0]);
   const [cadenzaKey, setCadenzaKey] = useState<'concert' | 'tenor'>('tenor');
 

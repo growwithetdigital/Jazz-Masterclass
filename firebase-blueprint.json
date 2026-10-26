@@ -158,6 +158,42 @@
         }
       },
       "required": ["id", "studentUid", "weeklyTargetMinutes", "daysPerWeekTarget"]
+    },
+    "DailyPillarLog": {
+      "title": "DailyPillarLog",
+      "description": "Daily hours breakdown logged across the 6 core practice pillars",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Log ID (e.g. pillar_YYYY-MM-DD)"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of practice (YYYY-MM-DD)"
+        },
+        "studentUid": {
+          "type": "string",
+          "description": "Student User ID"
+        },
+        "pillarHours": {
+          "type": "object",
+          "description": "Hours logged per pillar"
+        },
+        "totalHours": {
+          "type": "number",
+          "description": "Total hours practiced on date"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Student notes"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Update timestamp"
+        }
+      },
+      "required": ["id", "date", "studentUid", "pillarHours", "totalHours"]
     }
   },
   "firestore": {
@@ -176,6 +212,10 @@
     "/practiceGoals/{goalId}": {
       "schema": "PracticeGoal",
       "description": "Weekly practice targets and benchmarks"
+    },
+    "/dailyPillarLogs/{logId}": {
+      "schema": "DailyPillarLog",
+      "description": "Collection of daily hours logged across the 6 core pillars"
     }
   }
 }
