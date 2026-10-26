@@ -1,6 +1,7 @@
 import { TenorTitan, CollegeAuditionProfile, JazzArticleLesson, EllingtonTune, HarmonicLick, FacultyMember } from '../types/masterclass';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
 import { TITAN_SOUND_DEMOS } from './titansSoundDemos';
+import { NOTE_FREQUENCIES } from '../utils/audioEngine';
 
 // TOP 10 TENOR GREATS & ADJUDICATION VOICES
 const RAW_TENOR_TITANS: TenorTitan[] = [
@@ -661,45 +662,183 @@ export const HARMONIC_LICKS: HarmonicLick[] = [
     id: 'parker-enclosure-1',
     title: "Bird's Signature Chromatic Target Enclosure",
     sourceMaster: "Charlie Parker",
-    chordContext: "ii - V - I in Bb Concert (Cm7 -> F7 -> Bbmaj7)",
-    concertNotes: "Eb -> D -> C# -> D (Over F7) -> G -> Bb -> D -> F -> A (Resolving to 3rd D of Bbmaj7)",
-    tenorNotes: "F -> E -> D# -> E (Over G7) -> A -> C -> E -> G -> B (Resolving to 3rd E of Cmaj7)",
-    altoNotes: "C -> B -> A# -> B (Over D7) -> E -> G -> B -> D -> F# (Resolving to 3rd B of Gmaj7)",
+    chordContext: "ii - V - I in Bb Concert (Cm7 -> F7 -> Bbmaj7 / Tenor: Dm7 -> G7 -> Cmaj7)",
+    concertNotes: "Eb4 -> D4 -> C#4 -> D4 (Over F7) -> G4 -> Bb4 -> D5 -> F5 -> A5 (Resolving to 3rd D of Bbmaj7)",
+    tenorNotes: "F4 -> E4 -> D#4 -> E4 (Over G7) -> A4 -> C5 -> E5 -> G5 -> B5 (Resolving to 3rd E of Cmaj7)",
+    altoNotes: "C4 -> B3 -> A#3 -> B3 (Over D7) -> E4 -> G4 -> B4 -> D5 -> F#5 (Resolving to 3rd B of Gmaj7)",
     harmonicConcept: "Enclosing the target 3rd from a diatonic step above and a chromatic half-step below. Rhythmic placement lands the chord tone directly on beat 1.",
-    pedagogicalTip: "Practice this in all 12 keys. Slur the enclosure into the downbeat, popping an accent on the lower chromatic note."
+    pedagogicalTip: "Practice this in all 12 keys. Slur the enclosure into the downbeat, popping a sharp accent on the lower chromatic note.",
+    tempoBpm: 210,
+    soundNotes: [
+      { noteName: 'F4', durationMs: 250, freq: NOTE_FREQUENCIES['F4'] },
+      { noteName: 'E4', durationMs: 250, freq: NOTE_FREQUENCIES['E4'] },
+      { noteName: 'D#4', durationMs: 250, freq: NOTE_FREQUENCIES['D#4'] },
+      { noteName: 'E4', durationMs: 250, freq: NOTE_FREQUENCIES['E4'] },
+      { noteName: 'A4', durationMs: 250, freq: NOTE_FREQUENCIES['A4'] },
+      { noteName: 'C5', durationMs: 250, freq: NOTE_FREQUENCIES['C5'] },
+      { noteName: 'E5', durationMs: 500, freq: NOTE_FREQUENCIES['E5'] },
+    ]
   },
   {
     id: 'parker-3-to-9',
     title: "3-to-9 Bebop Arpeggio Resolution",
     sourceMaster: "Charlie Parker",
     chordContext: "Dm7 -> G7 -> Cmaj7 (Tenor Key: Em7 -> A7 -> Dmaj7)",
-    concertNotes: "F - A - C - E (Dm9 arpeggio from the 3rd) -> B - D - F - Ab (G7b9 arpeggio from the 3rd) -> E (3rd of C)",
-    tenorNotes: "G - B - D - F# (Em9 arpeggio) -> C# - E - G - Bb (A7b9 arpeggio) -> F# (3rd of Dmaj7)",
-    altoNotes: "D - F# - A - C# (Bm9 arpeggio) -> G# - B - D - F (E7b9 arpeggio) -> C# (3rd of Amaj7)",
-    harmonicConcept: "Omitting the root and outlining the 3rd, 5th, 7th, and 9th creates seamless voice leading with color extensions.",
-    pedagogicalTip: "Over the dominant chord, the 3-5-7-b9 arpeggio forms a fully diminished chord. This is the heart of bebop harmony."
+    concertNotes: "F4 - A4 - C5 - E5 (Dm9 from 3rd) -> B4 - D5 - F5 - Ab5 (G7b9 from 3rd) -> E5 (3rd of Cmaj7)",
+    tenorNotes: "G4 - B4 - D5 - F#5 (Em9 from 3rd) -> C#5 - E5 - G5 - Bb5 (A7b9 from 3rd) -> F#5 (3rd of Dmaj7)",
+    altoNotes: "D4 - F#4 - A4 - C#5 (Bm9 from 3rd) -> G#4 - B4 - D5 - F5 (E7b9 from 3rd) -> C#5 (3rd of Amaj7)",
+    harmonicConcept: "Omitting the root and outlining the 3rd, 5th, 7th, and 9th creates seamless voice leading with colorful upper extensions.",
+    pedagogicalTip: "Over the dominant chord, the 3-5-7-b9 arpeggio forms a fully diminished seventh chord. This is the harmonic engine of bebop.",
+    tempoBpm: 220,
+    soundNotes: [
+      { noteName: 'G4', durationMs: 250, freq: NOTE_FREQUENCIES['G4'] },
+      { noteName: 'B4', durationMs: 250, freq: NOTE_FREQUENCIES['B4'] },
+      { noteName: 'D5', durationMs: 250, freq: NOTE_FREQUENCIES['D5'] },
+      { noteName: 'F#5', durationMs: 250, freq: NOTE_FREQUENCIES['F#5'] },
+      { noteName: 'C#5', durationMs: 250, freq: NOTE_FREQUENCIES['C#5'] },
+      { noteName: 'E5', durationMs: 250, freq: NOTE_FREQUENCIES['E5'] },
+      { noteName: 'G5', durationMs: 250, freq: NOTE_FREQUENCIES['G5'] },
+      { noteName: 'Bb5', durationMs: 250, freq: NOTE_FREQUENCIES['Bb5'] },
+      { noteName: 'F#5', durationMs: 500, freq: NOTE_FREQUENCIES['F#5'] }
+    ]
+  },
+  {
+    id: 'parker-dominant-bebop',
+    title: "Parker Dominant Bebop Scale Machine",
+    sourceMaster: "Charlie Parker",
+    chordContext: "Dominant 7th in Bb Concert (F7) / Tenor Key: G7 (Resolving to Cmaj7)",
+    concertNotes: "F4 -> G4 -> A4 -> Bb4 -> C5 -> D5 -> Eb5 -> E5 (passing 7th) -> F5",
+    tenorNotes: "G4 -> A4 -> B4 -> C5 -> D5 -> E5 -> F5 -> F#5 (passing 7th) -> G5",
+    altoNotes: "D4 -> E4 -> F#4 -> G4 -> A4 -> B4 -> C5 -> C#5 (passing 7th) -> D5",
+    harmonicConcept: "Adding a chromatic passing tone (natural 7th) between the b7 and the root creates an 8-note scale so all chord tones land on downbeats.",
+    pedagogicalTip: "Start your line on any chord tone (1, 3, 5, b7) on beat 1 or 3, and all chord tones will naturally align with the beat.",
+    tempoBpm: 230,
+    soundNotes: [
+      { noteName: 'G4', durationMs: 220, freq: NOTE_FREQUENCIES['G4'] },
+      { noteName: 'A4', durationMs: 220, freq: NOTE_FREQUENCIES['A4'] },
+      { noteName: 'B4', durationMs: 220, freq: NOTE_FREQUENCIES['B4'] },
+      { noteName: 'C5', durationMs: 220, freq: NOTE_FREQUENCIES['C5'] },
+      { noteName: 'D5', durationMs: 220, freq: NOTE_FREQUENCIES['D5'] },
+      { noteName: 'E5', durationMs: 220, freq: NOTE_FREQUENCIES['E5'] },
+      { noteName: 'F5', durationMs: 220, freq: NOTE_FREQUENCIES['F5'] },
+      { noteName: 'F#5', durationMs: 220, freq: NOTE_FREQUENCIES['F#5'] },
+      { noteName: 'G5', durationMs: 500, freq: NOTE_FREQUENCIES['G5'] }
+    ]
+  },
+  {
+    id: 'parker-minor-altered',
+    title: "Bird's Minor ii-V-i Altered Dominant Turn",
+    sourceMaster: "Charlie Parker",
+    chordContext: "Cm7b5 -> F7alt -> Bbm (Tenor: Dm7b5 -> G7alt -> Cm)",
+    concertNotes: "Eb4 -> C4 -> A3 -> Gb3 (over Cm7b5) -> F4 -> Ab4 -> B4 -> Db5 (F7alt) -> C5 (tonic)",
+    tenorNotes: "F4 -> D4 -> B3 -> Ab3 (over Dm7b5) -> G4 -> Bb4 -> C#5 -> Eb5 (G7alt) -> D5 (tonic)",
+    altoNotes: "C4 -> A3 -> F#3 -> Eb3 (over Am7b5) -> D4 -> F4 -> G#4 -> Bb4 (D7alt) -> A4 (tonic)",
+    harmonicConcept: "Combining the half-diminished arpeggio with the altered dominant scale (b9, #9, b5, #5) creates explosive harmonic tension.",
+    pedagogicalTip: "Target the flat-9 (Ab on G7 in tenor key) on an off-beat and resolve cleanly down a half-step to the 5th of the minor tonic.",
+    tempoBpm: 195,
+    soundNotes: [
+      { noteName: 'F4', durationMs: 250, freq: NOTE_FREQUENCIES['F4'] },
+      { noteName: 'D4', durationMs: 250, freq: NOTE_FREQUENCIES['D4'] },
+      { noteName: 'B3', durationMs: 250, freq: NOTE_FREQUENCIES['B3'] },
+      { noteName: 'G4', durationMs: 250, freq: NOTE_FREQUENCIES['G4'] },
+      { noteName: 'Bb4', durationMs: 250, freq: NOTE_FREQUENCIES['Bb4'] },
+      { noteName: 'C#5', durationMs: 250, freq: NOTE_FREQUENCIES['C#5'] },
+      { noteName: 'Eb5', durationMs: 250, freq: NOTE_FREQUENCIES['Eb5'] },
+      { noteName: 'D5', durationMs: 600, freq: NOTE_FREQUENCIES['D5'] }
+    ]
   },
   {
     id: 'coltrane-cycle-1',
     title: "Coltrane Matrix Three-Tonic Resolution",
     sourceMaster: "John Coltrane",
-    chordContext: "Major Thirds Cycle (C -> Ab -> E -> C)",
-    concertNotes: "Cmaj7 -> Eb7 -> Abmaj7 -> B7 -> Emaj7 -> G7 -> Cmaj7",
-    tenorNotes: "Dmaj7 -> F7 -> Bbmaj7 -> Db7 -> F#maj7 -> A7 -> Dmaj7",
-    altoNotes: "Amaj7 -> C7 -> Fmaj7 -> Ab7 -> C#maj7 -> E7 -> Amaj7",
+    chordContext: "Giant Steps Major Thirds Cycle (Concert: B -> G -> Eb / Tenor: C# -> A -> F)",
+    concertNotes: "Bmaj7 -> D7 -> Gmaj7 -> Bb7 -> Ebmaj7 -> F#7 -> Bmaj7",
+    tenorNotes: "C#maj7 -> E7 -> Amaj7 -> C7 -> Fmaj7 -> Ab7 -> C#maj7",
+    altoNotes: "G#maj7 -> B7 -> Emaj7 -> G7 -> Cmaj7 -> Eb7 -> G#maj7",
     harmonicConcept: "Coltrane divides the 12-semitone octave into three equidistant major thirds (4 semitones apart).",
-    pedagogicalTip: "Use digital patterns (1-2-3-5 on the tonic chords) to navigate the rapid key centers at tempo."
+    pedagogicalTip: "Use digital patterns (1-2-3-5 on the tonic chords) to navigate the rapid key centers at tempo.",
+    tempoBpm: 240,
+    coltraneCycle: {
+      keyCenters: ['C# Major (Tenor)', 'A Major (Tenor)', 'F Major (Tenor)'],
+      rootCycle: ['C#', 'A', 'F'],
+      digitalPattern: '1 - 2 - 3 - 5 over each major third tonic'
+    },
+    soundNotes: [
+      { noteName: 'C#4', durationMs: 230, freq: NOTE_FREQUENCIES['C#4'] },
+      { noteName: 'D#4', durationMs: 230, freq: NOTE_FREQUENCIES['D#4'] },
+      { noteName: 'F4', durationMs: 230, freq: NOTE_FREQUENCIES['F4'] }, // E# = F
+      { noteName: 'G#4', durationMs: 230, freq: NOTE_FREQUENCIES['G#4'] },
+      { noteName: 'A4', durationMs: 230, freq: NOTE_FREQUENCIES['A4'] },
+      { noteName: 'B4', durationMs: 230, freq: NOTE_FREQUENCIES['B4'] },
+      { noteName: 'C#5', durationMs: 230, freq: NOTE_FREQUENCIES['C#5'] },
+      { noteName: 'E5', durationMs: 230, freq: NOTE_FREQUENCIES['E5'] },
+      { noteName: 'F5', durationMs: 600, freq: NOTE_FREQUENCIES['F5'] }
+    ]
   },
   {
-    id: 'gordon-subtone',
-    title: "Dexter's Velvet Sub-Tone Blues Descent",
-    sourceMaster: "Dexter Gordon",
-    chordContext: "Blues in Bb Concert (Tenor: C Blues)",
-    concertNotes: "F -> D -> C -> Bb -> G -> F -> Eb -> D -> C (Sub-tone down to low Bb)",
-    tenorNotes: "G -> E -> D -> C -> A -> G -> F -> E -> D (Sub-tone down to low C)",
-    altoNotes: "D -> B -> A -> G -> E -> D -> C -> B -> A (Sub-tone down to low G)",
-    harmonicConcept: "Laying back deep on the pocket with rich sub-tone breath dampening higher overtones.",
-    pedagogicalTip: "Pull the lower jaw back slightly so your lower lip cushions more of the reed without closing the tip."
+    id: 'coltrane-digital-pentatonic',
+    title: "Coltrane 1-2-3-5 Pentatonic Permutations",
+    sourceMaster: "John Coltrane",
+    chordContext: "Modal / Quartal Harmony in D Dorian (Concert: C Dorian)",
+    concertNotes: "C4 -> D4 -> Eb4 -> G4 -> F4 -> G4 -> Bb4 -> C5",
+    tenorNotes: "D4 -> E4 -> F4 -> A4 -> G4 -> A4 -> C5 -> D5",
+    altoNotes: "A4 -> B4 -> C5 -> E5 -> D5 -> E5 -> G5 -> A5",
+    harmonicConcept: "Stacking 1-2-3-5 formulas across quartal shifts creates sheets of sound without relying on traditional arpeggios.",
+    pedagogicalTip: "Keep your tongue position elevated in the 'EE' vowel to maintain velocity and note-to-note clarity on tenor.",
+    tempoBpm: 230,
+    soundNotes: [
+      { noteName: 'D4', durationMs: 240, freq: NOTE_FREQUENCIES['D4'] },
+      { noteName: 'E4', durationMs: 240, freq: NOTE_FREQUENCIES['E4'] },
+      { noteName: 'F4', durationMs: 240, freq: NOTE_FREQUENCIES['F4'] },
+      { noteName: 'A4', durationMs: 240, freq: NOTE_FREQUENCIES['A4'] },
+      { noteName: 'G4', durationMs: 240, freq: NOTE_FREQUENCIES['G4'] },
+      { noteName: 'A4', durationMs: 240, freq: NOTE_FREQUENCIES['A4'] },
+      { noteName: 'C5', durationMs: 240, freq: NOTE_FREQUENCIES['C5'] },
+      { noteName: 'D5', durationMs: 600, freq: NOTE_FREQUENCIES['D5'] }
+    ]
+  },
+  {
+    id: 'coltrane-sheets-sound',
+    title: "Coltrane 'Sheets of Sound' Chromatic Cascade",
+    sourceMaster: "John Coltrane",
+    chordContext: "Countdown ii-V-I Reharmonization (Em7 -> F7 -> Bbmaj7 -> Db7 -> F#maj7)",
+    concertNotes: "D4 - F#4 - A4 - C#5 -> Eb5 - D5 - C5 - Bb4 -> Db5 - C5 - Bb4 - Ab4",
+    tenorNotes: "E4 - G#4 - B4 - D#5 -> F5 - E5 - D5 - C5 -> Eb5 - D5 - C5 - Bb4",
+    altoNotes: "B4 - D#5 - F#5 - A#5 -> C6 - B5 - A5 - G5 -> Bb5 - A5 - G5 - F5",
+    harmonicConcept: "Superimposing pentatonic scale fragments a minor third apart, creating an unbroken wall of harmonic color.",
+    pedagogicalTip: "Do not tongue individual notes. Use clean legato fingerings with firm diaphragm air support.",
+    tempoBpm: 260,
+    soundNotes: [
+      { noteName: 'E4', durationMs: 180, freq: NOTE_FREQUENCIES['E4'] },
+      { noteName: 'G#4', durationMs: 180, freq: NOTE_FREQUENCIES['G#4'] },
+      { noteName: 'B4', durationMs: 180, freq: NOTE_FREQUENCIES['B4'] },
+      { noteName: 'D#5', durationMs: 180, freq: NOTE_FREQUENCIES['D#5'] },
+      { noteName: 'F5', durationMs: 180, freq: NOTE_FREQUENCIES['F5'] },
+      { noteName: 'E5', durationMs: 180, freq: NOTE_FREQUENCIES['E5'] },
+      { noteName: 'D5', durationMs: 180, freq: NOTE_FREQUENCIES['D5'] },
+      { noteName: 'C5', durationMs: 500, freq: NOTE_FREQUENCIES['C5'] }
+    ]
+  },
+  {
+    id: 'brecker-altissimo-overtone',
+    title: "Brecker & Coltrane Altissimo Overtone Extension",
+    sourceMaster: "Michael Brecker",
+    chordContext: "Low Bb Fundamental Overtones into Altissimo High G, A, and C",
+    concertNotes: "Concert Ab1 -> Ab2 -> Eb3 -> Ab3 -> C4 -> Eb4 -> Altissimo G5",
+    tenorNotes: "Tenor Low Bb2 -> Middle Bb3 -> Middle F4 -> High Bb4 -> High D5 -> High F5 -> Altissimo High G5",
+    altoNotes: "Alto Low Bb2 -> Middle Bb3 -> Middle F4 -> High Bb4 -> High D5 -> High F5 -> Altissimo High G5",
+    harmonicConcept: "Manipulating oral cavity acoustic resonance (vowel shaping) to extract upper partials without biting the reed.",
+    pedagogicalTip: "Voice 'OH' for the first octave, 'AH' for the 12th, and 'EE' for the double octave and altissimo. Never bite.",
+    tempoBpm: 120,
+    soundNotes: [
+      { noteName: 'Bb2', durationMs: 400, freq: NOTE_FREQUENCIES['Bb2'] },
+      { noteName: 'Bb3', durationMs: 400, freq: NOTE_FREQUENCIES['Bb3'] },
+      { noteName: 'F4', durationMs: 400, freq: NOTE_FREQUENCIES['F4'] },
+      { noteName: 'Bb4', durationMs: 400, freq: NOTE_FREQUENCIES['Bb4'] },
+      { noteName: 'D5', durationMs: 400, freq: NOTE_FREQUENCIES['D5'] },
+      { noteName: 'F5', durationMs: 400, freq: NOTE_FREQUENCIES['F5'] },
+      { noteName: 'G5', durationMs: 800, freq: NOTE_FREQUENCIES['G5'] }
+    ]
   }
 ];
 

@@ -8,9 +8,10 @@ import { AudioVaultModule } from './components/AudioVaultModule';
 import { EllingtonAuditionModule } from './components/EllingtonAuditionModule';
 import { TranscendenceLabModule } from './components/TranscendenceLabModule';
 import { PracticeRoutineModule } from './components/PracticeRoutineModule';
+import { SheetMusicModule } from './components/SheetMusicModule';
 import { 
   Music, Award, Compass, BookOpen, Layers, ArrowRight, 
-  GraduationCap, Users, Mic, Sparkles, ChevronLeft
+  GraduationCap, Users, Mic, Sparkles, ChevronLeft, FileText
 } from 'lucide-react';
 
 interface EngineCard {
@@ -77,6 +78,15 @@ const CONSERVATORY_ENGINES: EngineCard[] = [
     description: 'Charlie Parker chromatic enclosures and 3-to-9 resolutions alongside Coltrane 3-key cycles and Michael Brecker overtone voicing.',
     ctaText: 'Open Harmony Lab',
     icon: Sparkles
+  },
+  {
+    id: 'sheets',
+    category: 'vocabulary',
+    tag: 'Classic Tenor Standards',
+    title: 'Sheet Music Vault (12 Tenor Standards)',
+    description: 'Lead sheets and chord changes for classic tenor saxophone songs (Cottontail, Giant Steps, Body & Soul, Blue Train) with 4-way transposition and audio previews.',
+    ctaText: 'Open Sheet Music Vault',
+    icon: FileText
   },
   {
     id: 'lessons',
@@ -314,6 +324,10 @@ export default function App() {
               <TranscendenceLabModule onSelectTab={handleSelectTab} />
             )}
 
+            {activeTab === 'sheets' && (
+              <SheetMusicModule onSelectTab={handleSelectTab} />
+            )}
+
             {activeTab === 'practice' && (
               <PracticeRoutineModule onSelectTab={handleSelectTab} />
             )}
@@ -344,7 +358,7 @@ export default function App() {
       </footer>
 
       {/* Mobile Bottom Quick-Action Dock (Under 15% Mobile Viewport Cap) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0d0e14]/95 backdrop-blur-md border-t border-slate-200 dark:border-[#222533] px-4 py-2 flex items-center justify-around text-[10px] font-medium text-slate-600 dark:text-slate-400 shadow-lg">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0d0e14]/95 backdrop-blur-md border-t border-slate-200 dark:border-[#222533] px-2 py-2 flex items-center justify-around text-[10px] font-medium text-slate-600 dark:text-slate-400 shadow-lg">
         <button
           onClick={() => handleSelectTab('overview')}
           className={`flex flex-col items-center gap-0.5 ${
@@ -362,6 +376,15 @@ export default function App() {
         >
           <Layers className="w-4 h-4" />
           <span>Practice</span>
+        </button>
+        <button
+          onClick={() => handleSelectTab('sheets')}
+          className={`flex flex-col items-center gap-0.5 ${
+            activeTab === 'sheets' ? 'text-amber-600 dark:text-amber-400 font-bold' : ''
+          }`}
+        >
+          <FileText className="w-4 h-4" />
+          <span>Sheets</span>
         </button>
         <button
           onClick={() => handleSelectTab('vault')}

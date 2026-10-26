@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Music, GraduationCap, Users, BookOpen, Mic, 
-  Layers, Compass, Sparkles, Menu, X, ArrowRight, Award
+  Layers, Compass, Sparkles, Menu, X, ArrowRight, Award, FileText
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
@@ -25,10 +25,11 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'overview', label: 'Conservatory Hub', shortLabel: 'Hub', icon: Music, description: 'Overview, core engines & audition roadmap' },
   { id: 'practice', label: 'Practice Studio', shortLabel: 'Practice', icon: Layers, description: 'Weekly calendar, swing metronome & tuning drone' },
   { id: 'vault', label: 'Performance Vault', shortLabel: 'Vault', icon: Mic, description: 'Audio/video recorder & 100-pt Lincoln Center adjudication' },
+  { id: 'sheets', label: 'Sheet Music Vault', shortLabel: 'Sheets', icon: FileText, description: '12 classic lead sheets & master solo transcriptions' },
   { id: 'colleges', label: 'Top 25 Colleges', shortLabel: 'Colleges', icon: GraduationCap, description: 'Audition reality, Reddit intel & Agoura alumni' },
   { id: 'titans', label: '10 Tenor Titans', shortLabel: 'Titans', icon: Users, description: 'Sound philosophies, note synthesis & YouTube archives' },
-  { id: 'ellington', label: 'Ellington Workshop', shortLabel: 'Ellington', icon: Compass, description: 'Cottontail, Warm Valley & ballad cadenza architect' },
   { id: 'transcendence', label: 'Parker & Coltrane', shortLabel: 'Harmony', icon: Sparkles, description: 'Bebop enclosures, 3-key cycles & overtone series' },
+  { id: 'ellington', label: 'Ellington Workshop', shortLabel: 'Ellington', icon: Compass, description: 'Cottontail, Warm Valley & ballad cadenza architect' },
   { id: 'lessons', label: 'Lessons & Homework', shortLabel: 'Lessons', icon: BookOpen, description: 'Fact-checked historical essays & practice drills' },
 ];
 
@@ -95,7 +96,7 @@ export const TopNav: React.FC<TopNavProps> = ({
             <div className="relative group">
               <button
                 className={`px-2.5 py-1.5 rounded-md transition-all whitespace-nowrap shrink-0 flex items-center gap-1 ${
-                  ['transcendence', 'lessons'].includes(activeTab)
+                  ['transcendence', 'ellington', 'lessons'].includes(activeTab)
                     ? 'text-amber-700 dark:text-amber-300 font-semibold bg-amber-500/10'
                     : 'hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/40'
                 }`}

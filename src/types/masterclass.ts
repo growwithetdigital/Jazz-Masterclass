@@ -267,13 +267,77 @@ export interface EllingtonTune {
 export interface HarmonicLick {
   id: string;
   title: string;
-  sourceMaster: 'Charlie Parker' | 'John Coltrane' | 'Dexter Gordon' | 'Duke Ellington';
+  sourceMaster: 'Charlie Parker' | 'John Coltrane' | 'Dexter Gordon' | 'Michael Brecker';
   chordContext: string;
   concertNotes: string;
   tenorNotes: string;
   altoNotes: string;
   harmonicConcept: string;
   pedagogicalTip: string;
+  tempoBpm?: number;
+  soundNotes?: SoundDemoNote[];
+  coltraneCycle?: {
+    keyCenters: string[];
+    rootCycle: string[];
+    digitalPattern: string;
+  };
+}
+
+export interface MasterNoteApproach {
+  master: 'Charlie Parker' | 'John Coltrane';
+  title: string;
+  focusBars: string;
+  concept: string;
+  pedagogyNote: string;
+  tenorLickSnippet: string;
+  scaleDegrees: string;
+  soundNotes: SoundDemoNote[];
+}
+
+export interface SheetMusicMeasure {
+  measureNumber: number;
+  section?: string; // e.g. "A1", "A2", "Bridge", "A3", "Chorus"
+  sectionTitle?: string; // e.g. "Head Statement", "Bridge (Cycle of 4ths)", "Cadential Turnaround"
+  chords: {
+    tenorChord: string;
+    concertChord: string;
+    clarinetChord: string;
+    altoChord: string;
+  };
+  melodyNotes: string; // e.g. "G4 - Bb4 - C5 - D5"
+  transcriptionSnippet: string; // e.g. "Ben Webster opening blues inflection"
+  solfegeOrDegrees: string; // e.g. "1 - b3 - 4 - 5"
+  soundNotes?: SoundDemoNote[];
+  parkerTip?: string;
+  coltraneTip?: string;
+}
+
+export interface TenorSheetMusic {
+  id: string;
+  title: string;
+  composer: string;
+  year: string;
+  leadTenorLegend: string;
+  style: 'Swing / Rhythm Changes' | 'Ballad with Cadenza' | 'Bebop Classic' | 'Hard Bop & Minor Blues' | 'Bossa Nova' | 'Modal & Coltrane Changes';
+  tempoBpm: number;
+  keyConcert: string;
+  keyTenor: string;
+  keyClarinet: string;
+  keyAlto: string;
+  timeSignature: string;
+  form: string;
+  totalBars: number;
+  difficulty: 'Intermediate' | 'Advanced' | 'Elite Conservatory';
+  historicalContext: string;
+  essentialRecording: string;
+  youtubeQuery: string;
+  audioPlaybackDemo?: SoundDemoNote[];
+  leadSheetDescription: string;
+  measures: SheetMusicMeasure[];
+  auditionTips: string;
+  cadenzaGuide?: string;
+  parkerApproach: MasterNoteApproach;
+  coltraneApproach: MasterNoteApproach;
 }
 
 
