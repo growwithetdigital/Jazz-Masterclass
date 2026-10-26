@@ -31,6 +31,15 @@ export interface TenorTitan {
   famousQuote: string;
   quoteSource: string;
   technicalKeynote: string;
+  facultySoundDemo?: FacultySoundDemo;
+}
+
+export interface CollegeCareerOutcome {
+  primaryRoles: string[];
+  typicalEmployersOrGigs: string[];
+  estimatedSalaryRange: string;
+  midCareerPotential: string;
+  industryDescription: string;
 }
 
 export interface CollegeAuditionProfile {
@@ -41,6 +50,8 @@ export interface CollegeAuditionProfile {
   programType: 'Conservatory' | 'University School of Music' | 'Contemporary College';
   officialWebsite: string;
   auditionPortalUrl: string;
+  eduUrl: string;
+  musicDeptUrl: string;
   imageBanner?: string;
   degreesOffered: string[];
   facultyHighlights: string[];
@@ -48,6 +59,7 @@ export interface CollegeAuditionProfile {
   scholarshipReality: string;
   prescreeningRequirements: string[];
   liveAuditionFormat: string[];
+  careerOutcomes: CollegeCareerOutcome;
   redditApplicantIntel: {
     roomAtmosphere: string;
     tempoTrap: string;
@@ -55,6 +67,49 @@ export interface CollegeAuditionProfile {
     theInterviewVibe: string;
     communityTip: string;
   };
+}
+
+export interface AgouraAlum {
+  id: string;
+  name: string;
+  gradYear?: string;
+  instrumentOrSpecialty: string;
+  agouraLegacyRole: string;
+  notableCredits: string[];
+  careerSummary: string;
+  directAdviceForMason: string;
+}
+
+export interface PracticeSessionRecord {
+  id: string;
+  studentUid: string;
+  date: string; // YYYY-MM-DD
+  minutes: number;
+  focusCategory: 'Tone & Overtones' | 'Parker Bebop & Enclosures' | 'Coltrane Changes' | 'Ellington Repertoire' | 'Clarinet Doubling' | 'Full Routine';
+  instrument: 'Tenor Saxophone' | 'Bb Clarinet' | 'Both';
+  notes?: string;
+  createdAt: string;
+}
+
+export interface PracticeGoalRecord {
+  id: string;
+  studentUid: string;
+  weeklyTargetMinutes: number;
+  daysPerWeekTarget: number;
+  updatedAt: string;
+}
+
+export interface SoundDemoNote {
+  noteName: string;
+  durationMs: number;
+  freq: number;
+}
+
+export interface FacultySoundDemo {
+  title: string;
+  concept: string;
+  notes: SoundDemoNote[];
+  pedagogyAdvice: string;
 }
 
 export interface JazzArticleLesson {

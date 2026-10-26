@@ -140,6 +140,72 @@ class AudioEngine {
   public isDronePlaying(): boolean {
     return this.isDroneActive;
   }
+
+  // --- INTERACTIVE NOTE & SOUND SYNTHESIS FOR LESSONS ---
+  private activeSequenceTimers: number[] = [];
+
+  public stopSequence() {
+    this.activeSequenceTimers.forEach(t => clearTimeout(t));
+    this.activeSequenceTimers = [];
+  }
+
+  public playNote(freq: number, durationSec = 0.5, oscType: OscillatorType = 'triangle') {
+    const ctx = this.getContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = oscType;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+    // Warm sax-like envelope with quick attack and natural decay
+    gain.gain.setValueAtTime(0.001, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.25, ctx.currentTime + 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + durationSec);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + durationSec + 0.05);
+  }
+
+  public playNoteSequence(notes: Array<{ noteName: string; durationMs: number; freq: number }>, onFinish?: () => void) {
+    this.stopSequence();
+    let accumulatedTime = 0;
+
+    notes.forEach((item, idx) => {
+      const timer = window.setTimeout(() => {
+        this.playNote(item.freq, (item.durationMs / 1000) * 0.9);
+        if (idx === notes.length - 1 && onFinish) {
+          setTimeout(onFinish, item.durationMs);
+        }
+      }, accumulatedTime);
+      this.activeSequenceTimers.push(timer);
+      accumulatedTime += item.durationMs;
+    });
+  }
 }
+
+// Frequency map for standard saxophone / piano range notes (Bb2 to F6)
+export const NOTE_FREQUENCIES: Record<string, number> = {
+  // Low Tenor / Sub-tone range
+  'Bb2': 116.54, 'B2': 123.47, 'C3': 130.81, 'C#3': 138.59, 'Db3': 138.59,
+  'D3': 146.83, 'D#3': 155.56, 'Eb3': 155.56, 'E3': 164.81, 'F3': 174.61,
+  'F#3': 185.00, 'Gb3': 185.00, 'G3': 196.00, 'G#3': 207.65, 'Ab3': 207.65,
+  'A3': 220.00, 'A#3': 233.08, 'Bb3': 233.08, 'B3': 246.94,
+
+  // Middle Register
+  'C4': 261.63, 'C#4': 277.18, 'Db4': 277.18, 'D4': 293.66,
+  'D#4': 311.13, 'Eb4': 311.13, 'E4': 329.63, 'F4': 349.23,
+  'F#4': 369.99, 'Gb4': 369.99, 'G4': 392.00, 'G#4': 415.30, 'Ab4': 415.30,
+  'A4': 440.00, 'A#4': 466.16, 'Bb4': 466.16, 'B4': 493.88,
+
+  // High Palm Keys & Altissimo
+  'C5': 523.25, 'C#5': 554.37, 'Db5': 554.37, 'D5': 587.33,
+  'D#5': 622.25, 'Eb5': 622.25, 'E5': 659.25, 'F5': 698.46,
+  'F#5': 739.99, 'Gb5': 739.99, 'G5': 783.99, 'G#5': 830.61, 'Ab5': 830.61,
+  'A5': 880.00, 'A#5': 932.33, 'Bb5': 932.33, 'B5': 987.77,
+  'C6': 1046.50, 'D6': 1174.66, 'E6': 1318.51, 'F6': 1396.91
+};
 
 export const audioEngine = new AudioEngine();

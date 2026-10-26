@@ -30,5 +30,22 @@ service cloud.firestore {
       allow update, delete: if isValidId(logId) && 
                             (!isSignedIn() || resource.data.studentUid == request.auth.uid);
     }
+
+    match /practiceSessions/{sessionId} {
+      allow read: if true;
+      allow create: if isValidId(sessionId) && 
+                    request.resource.data.studentUid is string &&
+                    request.resource.data.minutes is number;
+      allow update, delete: if isValidId(sessionId) && 
+                            (!isSignedIn() || resource.data.studentUid == request.auth.uid);
+    }
+
+    match /practiceGoals/{goalId} {
+      allow read: if true;
+      allow create, update: if isValidId(goalId) && 
+                            request.resource.data.studentUid is string;
+      allow delete: if isValidId(goalId) && 
+                    (!isSignedIn() || resource.data.studentUid == request.auth.uid);
+    }
   }
 }

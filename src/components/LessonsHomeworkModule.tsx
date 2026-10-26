@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { JAZZ_LESSONS } from '../data/conservatoryData';
 import { JazzArticleLesson } from '../types/masterclass';
-import { BookOpen, CheckSquare, Square, Clock, ExternalLink, Bookmark, CheckCircle2 } from 'lucide-react';
+import { audioEngine, NOTE_FREQUENCIES } from '../utils/audioEngine';
+import { BookOpen, CheckSquare, Square, Clock, ExternalLink, Bookmark, CheckCircle2, Volume2, Play } from 'lucide-react';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
 
 export const LessonsHomeworkModule: React.FC = () => {
   const [selectedLesson, setSelectedLesson] = useState<JazzArticleLesson>(JAZZ_LESSONS[0]);
   const [completedSteps, setCompletedSteps] = useState<Record<string, boolean>>({});
+  const [playingPitch, setPlayingPitch] = useState<string | null>(null);
 
   const toggleStep = (stepKey: string) => {
     setCompletedSteps(prev => ({ ...prev, [stepKey]: !prev[stepKey] }));
+  };
+
+  const playPitch = (noteName: string, durationSec = 1.0) => {
+    const freq = NOTE_FREQUENCIES[noteName];
+    if (!freq) return;
+    setPlayingPitch(noteName);
+    audioEngine.playNote(freq, durationSec, 'triangle');
+    setTimeout(() => {
+      setPlayingPitch(null);
+    }, durationSec * 1000);
   };
 
   return (
@@ -26,13 +38,13 @@ export const LessonsHomeworkModule: React.FC = () => {
             Historical Lessons & Practice Assignments
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-3xl leading-relaxed">
-            Concise, factually verified articles under 500 words documenting the defining breakthroughs in jazz tenor saxophone history—grounded in Smithsonian Jazz, Gunther Schuller, and conservatory archives—paired with targeted homework assignments for Mason.
+            Concise, factually verified articles under 500 words documenting the defining breakthroughs in jazz tenor saxophone history—grounded in Smithsonian Jazz, Gunther Schuller, and conservatory archives—paired with targeted homework assignments and pitch buttons for Mason.
           </p>
         </div>
       </div>
 
       {/* Visual Banner */}
-      <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#272c40] bg-slate-900 text-white aspect-[21/9] sm:aspect-[24/8] max-h-64">
+      <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-[#272c40] bg-slate-900 text-white aspect-[21/9] sm:aspect-[24/8] max-h-64 shadow-sm">
         <img
           src={JAZZ_IMAGES.lessonsStudyDesk}
           alt="Vintage Jazz Conservatory Study Desk with Sheet Music and Mouthpiece"
@@ -45,14 +57,14 @@ export const LessonsHomeworkModule: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
         <div className="absolute bottom-5 left-6 right-6 flex items-end justify-between">
           <div>
-            <span className="text-xs uppercase font-mono text-amber-400 tracking-wider">
+            <span className="text-xs uppercase font-mono text-amber-400 tracking-wider font-semibold">
               Smithsonian Jazz & Academic Archives
             </span>
             <h3 className="text-xl sm:text-2xl font-bold font-display text-white mt-0.5">
               The Architecture of the Masters
             </h3>
           </div>
-          <span className="text-xs font-mono text-amber-300 bg-black/40 px-3 py-1 rounded backdrop-blur border border-white/10 hidden sm:inline-block">
+          <span className="text-xs font-mono text-amber-300 bg-black/40 px-3 py-1 rounded backdrop-blur border border-white/10 hidden sm:inline-block font-bold">
             Verified Citations · &lt; 500 Words Each
           </span>
         </div>
@@ -63,7 +75,7 @@ export const LessonsHomeworkModule: React.FC = () => {
         
         {/* Left 4 Columns: Article Roster */}
         <div className="lg:col-span-4 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block px-1">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block px-1 font-mono">
             Curated Conservatory Lessons:
           </span>
 
@@ -92,7 +104,7 @@ export const LessonsHomeworkModule: React.FC = () => {
                   <h4 className="font-bold text-sm text-slate-900 dark:text-white font-display line-clamp-1">
                     {lesson.title}
                   </h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed font-sans">
                     {lesson.subtitle}
                   </p>
                 </button>
@@ -132,7 +144,7 @@ export const LessonsHomeworkModule: React.FC = () => {
                   href={selectedLesson.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1 shrink-0 font-medium"
+                  className="text-amber-600 dark:text-amber-400 hover:underline flex items-center gap-1 shrink-0 font-medium font-mono text-[11px]"
                 >
                   <span>Archives</span>
                   <ExternalLink className="w-3 h-3" />
@@ -157,7 +169,7 @@ export const LessonsHomeworkModule: React.FC = () => {
               ))}
             </div>
 
-            {/* Homework Assignment */}
+            {/* Homework Assignment & Sound Pitches */}
             <div className="pt-6 border-t border-slate-100 dark:border-[#1e2233] space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -166,17 +178,48 @@ export const LessonsHomeworkModule: React.FC = () => {
                     Mason's Homework Assignment
                   </h4>
                 </div>
-                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-slate-100 dark:bg-[#1c2030] text-amber-700 dark:text-amber-300 border border-slate-200 dark:border-[#2b3146]">
+                <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-slate-100 dark:bg-[#1c2030] text-amber-700 dark:text-amber-300 border border-slate-200 dark:border-[#2b3146] font-semibold">
                   Tempo Target: {selectedLesson.homeworkAssignment.tempoTarget}
                 </span>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#161825] border border-slate-200 dark:border-[#24283c] space-y-3">
-                <div className="font-bold text-sm text-slate-900 dark:text-white">
+              {/* Assignment Card with Interactive Tuning Tone */}
+              <div className="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-[#161825] border border-slate-200 dark:border-[#24283c] space-y-3.5">
+                <div className="font-bold text-sm text-slate-900 dark:text-white font-display">
                   {selectedLesson.homeworkAssignment.title}
                 </div>
                 <div className="text-xs text-amber-800 dark:text-amber-300/90 font-medium">
                   {selectedLesson.homeworkAssignment.focusNotes}
+                </div>
+
+                {/* Quick Pitch Reference Buttons for the Assignment */}
+                <div className="p-3 rounded-lg bg-white dark:bg-[#11131c] border border-slate-200 dark:border-[#242738] space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                      <Volume2 className="w-3.5 h-3.5 text-amber-500" />
+                      <span>Reference Pitch Buttons for this Lesson</span>
+                    </span>
+                    <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400">Match Pitch to Sax</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Bb2', 'D3', 'F3', 'Bb3', 'C4', 'Eb4', 'F4', 'G4', 'C5', 'F#5'].map((note) => {
+                      const isPlaying = playingPitch === note;
+                      return (
+                        <button
+                          key={note}
+                          type="button"
+                          onClick={() => playPitch(note)}
+                          className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition-all border cursor-pointer active:scale-95 ${
+                            isPlaying
+                              ? 'bg-amber-500 text-slate-950 border-amber-500 scale-105 shadow-sm'
+                              : 'bg-slate-50 dark:bg-[#1a1d2d] border-slate-300 dark:border-[#2b3044] text-slate-700 dark:text-slate-300 hover:border-amber-500'
+                          }`}
+                        >
+                          {note}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="space-y-2 pt-1 text-xs">

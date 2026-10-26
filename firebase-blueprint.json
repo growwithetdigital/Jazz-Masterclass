@@ -90,6 +90,74 @@
         }
       },
       "required": ["id", "studentUid", "durationMinutes"]
+    },
+    "PracticeSession": {
+      "title": "PracticeSession",
+      "description": "Logged daily practice session with minutes, category, instrument, and notes",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique session ID"
+        },
+        "studentUid": {
+          "type": "string",
+          "description": "User ID of student"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of practice (YYYY-MM-DD)"
+        },
+        "minutes": {
+          "type": "number",
+          "description": "Duration practiced in minutes"
+        },
+        "focusCategory": {
+          "type": "string",
+          "description": "Primary practice domain"
+        },
+        "instrument": {
+          "type": "string",
+          "description": "Instrument practiced (Tenor Sax, Bb Clarinet, Both)"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Reflection or technical notes"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp ISO string"
+        }
+      },
+      "required": ["id", "studentUid", "minutes", "date"]
+    },
+    "PracticeGoal": {
+      "title": "PracticeGoal",
+      "description": "Weekly practice targets and consistency benchmarks",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Goal document ID"
+        },
+        "studentUid": {
+          "type": "string",
+          "description": "Musician student user ID"
+        },
+        "weeklyTargetMinutes": {
+          "type": "number",
+          "description": "Target total practice minutes per week"
+        },
+        "daysPerWeekTarget": {
+          "type": "number",
+          "description": "Target number of practice days per week"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update ISO timestamp"
+        }
+      },
+      "required": ["id", "studentUid", "weeklyTargetMinutes", "daysPerWeekTarget"]
     }
   },
   "firestore": {
@@ -100,6 +168,14 @@
     "/practiceLogs/{logId}": {
       "schema": "PracticeLog",
       "description": "Collection of conservatory daily practice logs"
+    },
+    "/practiceSessions/{sessionId}": {
+      "schema": "PracticeSession",
+      "description": "Collection of logged practice sessions with minutes and categories"
+    },
+    "/practiceGoals/{goalId}": {
+      "schema": "PracticeGoal",
+      "description": "Weekly practice targets and benchmarks"
     }
   }
 }

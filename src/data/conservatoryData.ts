@@ -1,8 +1,9 @@
 import { TenorTitan, CollegeAuditionProfile, JazzArticleLesson, EllingtonTune, HarmonicLick, FacultyMember } from '../types/masterclass';
 import { JAZZ_IMAGES } from '../assets/imageAssets';
+import { TITAN_SOUND_DEMOS } from './titansSoundDemos';
 
 // TOP 10 TENOR GREATS & ADJUDICATION VOICES
-export const TENOR_TITANS: TenorTitan[] = [
+const RAW_TENOR_TITANS: TenorTitan[] = [
   {
     id: 'hawkins',
     name: "Coleman Hawkins",
@@ -327,204 +328,18 @@ export const TENOR_TITANS: TenorTitan[] = [
   }
 ];
 
-// COLLEGES TO CONSIDER WITH REAL APPLICANT / REDDIT INTEL
-export const COLLEGES_DATABASE: CollegeAuditionProfile[] = [
-  {
-    id: 'juilliard',
-    schoolName: "The Juilliard School",
-    divisionOrCollege: "Jazz Studies Division",
-    location: "Lincoln Center, New York, NY",
-    programType: "Conservatory",
-    officialWebsite: "https://www.juilliard.edu/music/jazz",
-    auditionPortalUrl: "https://www.juilliard.edu/admissions/music/jazz-studies-admissions",
-    imageBanner: JAZZ_IMAGES.lincolnCenterHall,
-    degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "Artist Diploma"],
-    facultyHighlights: ["Wynton Marsalis (Director)", "Ted Nash (Saxophone)", "Ron Blake (Tenor Saxophone)"],
-    acceptanceRate: "~3%",
-    scholarshipReality: "Need-blind admissions; full and near-full tuition packages available for top-tier admitted students, but competition is fierce (only 1-2 tenor saxophonists admitted per year).",
-    prescreeningRequirements: [
-      "1. Up-Tempo Bebop tune (220+ BPM) showing at least 2 complete choruses of improvisation",
-      "2. Standard Ballad with an extended unaccompanied cadenza (e.g. Prelude to a Kiss, Body and Soul)",
-      "3. Medium Swing standard showing authentic time feel (e.g. Cottontail, Autumn Leaves)",
-      "4. Straight-eighth / Latin tune (e.g. Black Nile, Recorda-Me)",
-      "Continuous video, hands and face visible, unedited audio"
-    ],
-    liveAuditionFormat: [
-      "Live auditions take place at Lincoln Center in February",
-      "Play 2-3 prepared selections with a world-class professional rhythm section provided by Juilliard",
-      "Live sight-reading of complex big band / combo charts with unfamiliar chord progressions",
-      "Faculty ear training tests: interval recall, singing chord roots"
-    ],
-    redditApplicantIntel: {
-      roomAtmosphere: "Reported on r/jazz and Reddit conservatory threads: The room is dead quiet with 4-6 faculty members seated at tables. Wynton or faculty will rarely smile—don't let that rattle you; they are listening with clinical precision.",
-      tempoTrap: "Applicants warn: When they count off a tune like 'Confirmation' or 'Donna Lee', the rhythm section might kick it at 240+ BPM. Practice your up-tempo tunes 15% faster than comfortable so adrenaline doesn't crush your time feel.",
-      sightReadingReality: "The sight-reading is brutal: they will put an unfamiliar contemporary lead sheet in front of you and ask you to solo on the form after glancing at it for 20 seconds. Focus on guide tones (3rds and 7ths) rather than scales.",
-      theInterviewVibe: "They will ask: 'Why Juilliard?' and 'What do you listen to?' Be prepared to talk deeply about Duke Ellington, Johnny Hodges, Ben Webster, and the historical roots of the music.",
-      communityTip: "Reddit user u/jazzsax99: 'If your tone doesn't have an acoustic core that fills the room without a microphone, you're out before you finish the first 8 bars. Work on long tones and overtones every single day.'"
-    }
-  },
-  {
-    id: 'msm',
-    schoolName: "Manhattan School of Music (MSM)",
-    divisionOrCollege: "Jazz Arts Program",
-    location: "Morningside Heights, New York, NY",
-    programType: "Conservatory",
-    officialWebsite: "https://www.msmnyc.edu/programs/jazz-arts/",
-    auditionPortalUrl: "https://www.msmnyc.edu/admissions/audition-information/",
-    imageBanner: JAZZ_IMAGES.auditionHall,
-    degreesOffered: ["B.M. Jazz Arts", "M.M. Jazz Arts", "Doctor of Musical Arts (D.M.A.)"],
-    facultyHighlights: ["Donny McCaslin", "Steve Slagle", "Jaleel Shaw"],
-    acceptanceRate: "~8%",
-    scholarshipReality: "Generous merit scholarships awarded based directly on the live audition score. Top audition scores receive Dean's Scholarships covering 50% to 100% of tuition.",
-    prescreeningRequirements: [
-      "1. Fast Bebop tune or contrafact (minimum 210 BPM)",
-      "2. Ellington or Strayhorn repertoire piece with authentic phrasing",
-      "3. Lyrical jazz ballad showcasing tone dynamic shading (sub-tone to fortissimo)",
-      "4. Latin / Bossa Nova selection"
-    ],
-    liveAuditionFormat: [
-      "Live audition with rhythm section in MSM's Gordon K. and Harriet Greenfield Recital Hall",
-      "Faculty call out tunes from your submitted repertoire list",
-      "Immediate feedback or request to try a chorus in half-time or double-time feel",
-      "Sight-reading chord charts and swing melodies"
-    ],
-    redditApplicantIntel: {
-      roomAtmosphere: "Reddit consensus: MSM has a slightly warmer, more artist-centric energy than other NYC conservatories, but they expect fierce modern chops. Donny McCaslin and the faculty want to see personal voice, not just academic replicas.",
-      tempoTrap: "They love to test dynamic range. If you play everything at mezzo-forte (mf), you lose points. Drop to whisper sub-tone on the head, then build to altissimo on the climax.",
-      sightReadingReality: "Sight-reading often involves odd-meter or modern modal changes (e.g. 5/4 or 7/4 meters). Practice reading charts out of the New Real Book without stopping.",
-      theInterviewVibe: "They love applicants who are hungry to dive into the New York jazz scene and jam sessions immediately upon arrival.",
-      communityTip: "Reddit tip: 'MSM appreciates Coltrane changes and modern pentatonic substitutions. Weave a clean Coltrane cycle into your rhythm changes bridge and you'll catch their ear.'"
-    }
-  },
-  {
-    id: 'usc_thornton',
-    schoolName: "USC Thornton School of Music",
-    divisionOrCollege: "Jazz Studies Department",
-    location: "Los Angeles, CA",
-    programType: "University School of Music",
-    officialWebsite: "https://music.usc.edu/departments/jazz/",
-    auditionPortalUrl: "https://music.usc.edu/admission/auditions/",
-    imageBanner: JAZZ_IMAGES.recordingStudioBooth,
-    degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "D.M.A. Jazz Studies"],
-    facultyHighlights: ["Bob Mintzer (Department Chair)", "Jason Goldman", "Vince Mendoza"],
-    acceptanceRate: "~10%",
-    scholarshipReality: "Combines academic merit scholarships with music talent awards. Outstanding California applicants (especially from top high school programs like Agoura) are highly recruited.",
-    prescreeningRequirements: [
-      "1. Three contrasting jazz standards (Swing, Ballad, Latin)",
-      "2. Video must demonstrate improvisational fluency and clean articulation",
-      "3. Clarinet or flute doubling video sample is strongly encouraged for studio placement"
-    ],
-    liveAuditionFormat: [
-      "Auditions held at the Carson Soundstage and The Music Complex at USC",
-      "Playing with student or faculty rhythm section",
-      "Big band sight-reading test evaluating lead saxophone section projection",
-      "Interview with department chair Bob Mintzer regarding studio goals"
-    ],
-    redditApplicantIntel: {
-      roomAtmosphere: "Reddit r/Saxophonics: Bob Mintzer is famously encouraging but demands impeccable time feel and professional conduct. He is listening for whether you can step into a Los Angeles recording studio or big band tomorrow.",
-      tempoTrap: "They test your pocket at medium swing tempos (130-160 BPM). Anyone can sound fast at 260 BPM, but laying back comfortably at 135 BPM without rushing tests true maturity.",
-      sightReadingReality: "Because USC prepares players for TV/film studio sessions, their sight-reading evaluates articulation markings (staccato, tenuto, accents) and doubling readiness.",
-      theInterviewVibe: "Mentioning Director Bob Hackett and Agoura High Studio Jazz carries serious local prestige. The faculty knows Agoura's pedigree well.",
-      communityTip: "Reddit applicant: 'If you double on Bb Clarinet, bring both horns to the audition room! Showing you can switch with clean intonation gives you huge leverage for scholarship funding.'"
-    }
-  },
-  {
-    id: 'unt',
-    schoolName: "University of North Texas (UNT)",
-    divisionOrCollege: "Division of Jazz Studies",
-    location: "Denton, TX",
-    programType: "University School of Music",
-    officialWebsite: "https://jazz.unt.edu/",
-    auditionPortalUrl: "https://jazz.unt.edu/auditions",
-    imageBanner: JAZZ_IMAGES.studioMixingConsole,
-    degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "D.M.A. Jazz Studies"],
-    facultyHighlights: ["Alan Baylock (One O'Clock Lab Band)", "Brad Leali", "Philip Dizack"],
-    acceptanceRate: "~12%",
-    scholarshipReality: "Competitive out-of-state tuition waivers: winning a music scholarship (even $1,000) allows out-of-state students to pay in-state Texas tuition rates, saving $15,000+ per year.",
-    prescreeningRequirements: [
-      "1. Up-tempo rhythm changes (Cottontail, Oleo) @ 240+ BPM",
-      "2. 12-bar swing blues in multiple keys",
-      "3. Standard ballad (e.g. Body and Soul, Prelude to a Kiss)",
-      "4. Major scales and modes in all 12 keys"
-    ],
-    liveAuditionFormat: [
-      "High-energy live auditions in Denton, TX",
-      "Auditioning for placement into one of the 9 legendary Lab Bands (headed by the One O'Clock Lab Band)",
-      "Intense sight-reading of complex big band sax soli arrangements"
-    ],
-    redditApplicantIntel: {
-      roomAtmosphere: "UNT is the world capital of big band precision. Reddit threads describe the audition environment as intensely disciplined. There are dozens of tenor players competing for lab band chairs.",
-      tempoTrap: "They will test your rhythm changes at 260+ BPM. If your time feel wavers or you drop beats, you will be placed in a lower lab band. Keep your subdivisions strictly triplets.",
-      sightReadingReality: "The sight-reading is legendary: fast, densely harmonized big band soli parts with sudden dynamic drops and octave leaps. Practice reading trumpet/trombone cues.",
-      theInterviewVibe: "No-nonsense work ethic. They want students who are ready to practice 6 hours a day and rehearse late into the night.",
-      communityTip: "Reddit r/jazz: 'Getting in-state tuition waiver at UNT makes it the best value-for-money jazz education in the world. Nails your scales and keep that tenor sound fat and punchy.'"
-    }
-  },
-  {
-    id: 'berklee',
-    schoolName: "Berklee College of Music",
-    divisionOrCollege: "Woodwind Department / Jazz Performance",
-    location: "Boston, MA",
-    programType: "Contemporary College",
-    officialWebsite: "https://www.berklee.edu/",
-    auditionPortalUrl: "https://www.berklee.edu/admissions/undergraduate/audition-and-interview",
-    imageBanner: JAZZ_IMAGES.collegeQuad,
-    degreesOffered: ["B.M. Performance", "B.M. Jazz Composition", "Diploma in Music"],
-    facultyHighlights: ["George Garzone (Triadic Chromatic Concept)", "Walter Smith III", "Shannon LeClaire"],
-    acceptanceRate: "~35% (Top Scholarship <5%)",
-    scholarshipReality: "Admission is relatively broad, but top presidential scholarships (covering full tuition and housing) are hyper-competitive and awarded strictly to virtuosic improvisers.",
-    prescreeningRequirements: [
-      "Prepared piece of your choice (Bebop standard, modern jazz, or original transcription)",
-      "Improvisation over a blues or standard progression",
-      "Ear training call-and-response and rhythm matching",
-      "Live sight-reading"
-    ],
-    liveAuditionFormat: [
-      "15-minute one-on-one session with two faculty woodwind professors",
-      "Playing over a live piano or backing track",
-      "Short 15-minute personal interview about your musical aspirations"
-    ],
-    redditApplicantIntel: {
-      roomAtmosphere: "Reddit consensus: Berklee's audition is the friendliest and most welcoming, but don't be fooled—the difference between $0 scholarship and a $45,000/year award is night and day.",
-      tempoTrap: "They love George Garzone's Triadic Chromatic Approach. Demonstrating modern harmonic freedom and outside playing while remaining rooted in swing will blow the faculty away.",
-      sightReadingReality: "Sight-reading begins with a simple swing tune and progressively increases in difficulty to syncopated funk or odd-meter charts.",
-      theInterviewVibe: "They want to know your career ambitions: are you aiming to lead your own quartet, tour internationally, compose for big bands, or teach?",
-      communityTip: "Reddit user: 'Prepare a burning blues or rhythm changes tune. If you can solo through the changes with Parker vocabulary and then take it outside like Brecker, you'll walk away with scholarship money.'"
-    }
-  },
-  {
-    id: 'indiana_jacobs',
-    schoolName: "Indiana University - Jacobs School of Music",
-    divisionOrCollege: "Jazz Studies Department",
-    location: "Bloomington, IN",
-    programType: "University School of Music",
-    officialWebsite: "https://music.indiana.edu/degrees-programs/jazz-studies/",
-    auditionPortalUrl: "https://music.indiana.edu/admissions/auditions/jazz.html",
-    imageBanner: JAZZ_IMAGES.facultyJazzHall,
-    degreesOffered: ["B.M. Jazz Studies", "M.M. Jazz Studies", "Performer Diploma"],
-    facultyHighlights: ["Tom Walsh (Department Chair, Saxophone)", "Greg Ward", "Brent Wallarab"],
-    acceptanceRate: "~15%",
-    scholarshipReality: "Jacobs offers premier artistic merit awards and generous academic honors scholarships through Indiana University.",
-    prescreeningRequirements: [
-      "1. Medium or fast swing standard (e.g. Cottontail, Cherokee)",
-      "2. Ballad demonstrating tone control and vibrato",
-      "3. Bebop head and solo",
-      "4. Scales and arpeggios"
-    ],
-    liveAuditionFormat: [
-      "Audition in the state-of-the-art Musical Arts Center (MAC)",
-      "Live interaction with faculty rhythm section",
-      "Sight-reading of studio jazz arrangements"
-    ],
-    redditApplicantIntel: {
-      roomAtmosphere: "Reddit review: Jacobs combines the academic rigor of a Big Ten research university with one of the most revered classical and jazz conservatories in the world. Beautiful acoustic facilities.",
-      tempoTrap: "Tom Walsh listens intently for classical tone fundamentals combined with authentic jazz vocabulary. Clean intonation across register breaks is essential.",
-      sightReadingReality: "Solid big band charts with complex key signatures.",
-      theInterviewVibe: "Faculty are warm, intellectual, and focused on longevity and injury-free saxophone mechanics.",
-      communityTip: "Great balance of conservatory intensity with full university campus life."
-    }
-  }
-];
+export const TENOR_TITANS: TenorTitan[] = RAW_TENOR_TITANS.map((t) => ({
+  ...t,
+  facultySoundDemo: TITAN_SOUND_DEMOS[t.id]
+}));
+
+import { TOP_25_COLLEGES_DATABASE } from './collegesData';
+import { AGOURA_ALUMNI_SPOTLIGHT } from './alumniData';
+
+// TOP 25 ELITE COLLEGES & CONSERVATORIES WITH CAREERS & SALARIES
+export const COLLEGES_DATABASE: CollegeAuditionProfile[] = TOP_25_COLLEGES_DATABASE;
+export { TOP_25_COLLEGES_DATABASE, AGOURA_ALUMNI_SPOTLIGHT };
+
 
 // INSPIRING ARTICLES & HOMEWORK (< 500 WORDS EACH, 100% FACTUAL)
 export const JAZZ_LESSONS: JazzArticleLesson[] = [
